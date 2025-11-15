@@ -1,6 +1,7 @@
 import streamlit as st
 import pickle
 import pandas as pd
+import joblib 
 st.title("Swiggy Delivery Time Prediction")
 df = pd.read_csv(r'swiggy_cleaned.csv')
 df.dropna(inplace=True)
@@ -28,8 +29,13 @@ order_time_hour = st.number_input('order_time_hour',min_value=1,max_value=24)
 order_time_of_day  = st.selectbox('order_time_of_day ',X['order_time_of_day'].unique())
 distance =  st.number_input('distance ',min_value=1,max_value=100 )
 
-with open(r'model.pkl','rb') as file:
-    model = pickle.load(file)
+#with open(r'model.pkl','rb') as file:
+ #   model = pickle.load(file)
+
+
+joblib.dump(model, "model.pkl")
+
+
 
 
 
